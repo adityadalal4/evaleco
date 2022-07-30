@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<TITLE>
+GAMER
+</TITLE>
+<style>
+    body{
+        background-color:green;
+        font-style: Italic;
+        font-size: 1.5em;
+    }
+</style>
+<HEAD>
+<BODY>
+    <form>
+        <div>Actual non-renewable energy<input type="number" id="Target1"></div>
+        <div>Actual renewable energy<input type="number" id="Target2"></div>
+        <div>Target non-renewable<input type="number" id="Target3"></div>
+        <div>Target renewable<input type="number" id="Target4"></div>
+        <div>Total non-renewable <input type="text" id="x"></div>
+        <div>CO2 emissions <input type="text" id="y"></div>
+        <div>Total<input type="text" id="X"></div>
+        <div>Energy per capita<input type="text" id="Y"></div>
+        <input type="Submit" onclick="calculate()">
+    </form>
+    <p id="Result"></p>
+<SCRIPT>
+    var shiv1=0;
+    var shiv2=0;
+    var shiv3=0;
+    var shiv4=0;
+    var shiv5=0;
+    var shiv6=0;
+    var shiv7=0;
+    var shiv8=0;
+    
+const x = document.getElementById('x').value;
+const y = document.getElementById('y').value;
+const X = document.getElementById('X').value;
+const Y = document.getElementById('Y').value;
+for(var i=0;i<x.length;i++){
+    if(x[i]!=','){
+        shiv1+=int(x[i])/int(x[0])*100;
+        shiv2+=int(y[i])/int(y[0])*100;
+        shiv3+=int(X[i])/int(X[0])*100;
+        shiv4+=int(Y[i])/int(Y[0])*100;
+    }
+    
+}
+shiv1/=x.length;
+shiv2/=x.length;
+shiv3/=x.length;
+shiv4/=x.length;
+for(var i=0;i<x.length;i++){
+    shiv5+=Math.pow((shiv1-int(x[i])/int(x[0])*100),2);
+    shiv6+=Math.pow((shiv2-int(y[i])/int(y[0])*100),2);
+    shiv7+=Math.pow((shiv3-int(X[i])/int(X[0])*100),2);
+    shiv8+=Math.pow((shiv4-int(Y[i])/int(Y[0])*100),2);
+}
+m1=shiv6/shiv5;
+m2=shiv8/shiv7;
+c1=shiv2-m1*shiv1;
+c2=shiv4-m2*shiv3;
+a=m2/m1;
+b=m2;
+c=c2-m2/m1*c1;
+d=m1;
+e=c1;
+function calculate() {
+    var x1=document.getElementById("Target1").value;
+    var y1=document.getElementById("Target2").value;
+    var x2=document.getElementById("Target3").value;
+    var y2=document.getElementById("Target4").value;
+    console.log(x1);
+console.log(1/(Math.pow(Math.pow((b*y1+c)*d/Math.pow(d*x1+e,2),2)+Math.pow(b/(d*x1+e),2),(1/2)))/1/((b*y1+c)*d/Math.pow(d*x1+e,2)*Math.sin(Math.atan((y2-y1)/(x2-x1)))+(b/(d*x1+e))*Math.cos(Math.atan((y2-y1)/(x2-x1)))));
+}
+</SCRIPT>
+</BODY>
+</HTML>
